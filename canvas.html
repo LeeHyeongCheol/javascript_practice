@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HTML 로고</title>
+        <meta charset="UTF-8">
+        <style>
+            footer {
+                display:block;
+                border-top:1px solid orange;
+                margin:10px;
+                font-family:"Trebuchet MS",Arial,Helvetica,sans-serif;
+                font-weight:bold;
+            }
+            article {
+                display:block;
+                font-family:Georgia,"Times New Roman",Times,serif;
+                margin:5px;
+            }
+        </style>
+        <script language="javascript">
+            var ctx;
+            var factorvalue=1; //크기 조절 초기 값
+            var fontfamily="65px 'Gill Sans Ultra Bold',sans-serif";
+            function init() {
+                ctx=document.getElementById('canvas').getContext('2d'); //ctx 변수에 값 지정
+                ctx.font=fontfamily; 
+                ctx.save();
+                dologo();
+            }
+            function dologo() {
+                var offsety=90;
+                ctx.restore();
+                ctx.save();
+                ctx.clearRect(0,0,600,400);
+                ctx.scale(factorvalue,factorvalue);
+                ctx.fillText("HTML",31,60);
+                ctx.translate(0,offsety);
+                //오각형 그리기
+                ctx.fillStyle="#E34C26"
+                ctx.beginPath();
+                ctx.moveTo(39,250);
+                ctx.lineTo(17,0);
+                ctx.lineTo(262,0);
+                ctx.lineTo(239,250);
+                ctx.lineTo(139,278);
+                ctx.closePath();
+                ctx.fill();
+                //바탕보다 밝은 주황색으로 오른쪽 색 지정
+                ctx.fillStyle="#F06529";
+                ctx.beginPath();
+                ctx.moveTo(139,257);
+                ctx.lineTo(220,234);
+                ctx.lineTo(239,20);
+                ctx.lineTo(139,20);
+                ctx.closePath();
+                ctx.fill()
+                //글자 '5'의 왼쪽은 밝은 회색으로 그린다.
+                ctx.fillStyle='#EBEBEB';
+                ctx.beginPath();
+                ctx.moveTo(139,113);
+                ctx.lineTo(98,113);
+                ctx.lineTo(96,82);
+                ctx.lineTo(139,82);
+                ctx.lineTo(139,51);
+                ctx.lineTo(62,51);
+                ctx.lineTo(70,144);
+                ctx.lineTo(139,144);
+                ctx.closePath();
+                ctx.fill();
+                ctx.beginPath();
+                ctx.moveTo(139,193);
+                ctx.lineTo(105,184);
+                ctx.lineTo(103,159);
+                ctx.lineTo(72,159);
+                ctx.lineTo(76,207);
+                ctx.lineTo(139,225);
+                ctx.closePath();
+                ctx.fill();
+                //글자 '5'의 오른쪽은 흰색으로 그린다.
+                ctx.fillStyle="#FFFFFF";
+                ctx.beginPath();
+                ctx.moveTo(139,113);
+                ctx.lineTo(139,144);
+                ctx.lineTo(177,144);
+                ctx.lineTo(173,184);
+                ctx.lineTo(139,193);
+                ctx.lineTo(139,225);
+                ctx.lineTo(202,207);
+                ctx.lineTo(210,113);
+                ctx.closePath();
+                ctx.fill();
+                ctx.beginPath();
+                ctx.moveTo(139,51);
+                ctx.lineTo(139,82);
+                ctx.lineTo(213,82);
+                ctx.lineTo(216,51);
+                ctx.closePath();
+                ctx.fill();
+            }
+            function changescale(val) { //값 변경때마다 dologo() 함수 호출
+                factorvalue=val/100;
+                dologo();
+            }   
+        </script>
+    </head>
+    <body onload="init();">
+        <canvas id="canvas" width="600" height="400">
+            이 브라우저는 canvas 요소를 지원하지 않습니다.
+        </canvas>
+        <article>
+            크기 백분율:<input id="slide" type="range"
+                          min="0" max="100" value="100"
+                          onChange="changescale(this.value)"
+                          step="10"/>
+            참고:일부 브라우저에서는 슬라이더 대신에 텍스트 필드를 표시 합니다.
+        </article>
+        <article>
+            <a href="http://people.opera.com/danield/html5/html5logo/">Daniel Davis 등의 작업물</a>
+        </article>
+        <footer>
+            HTML5 로고의 상표권은 <a href="http://www.w3.org/">
+            <abbr title="World Wide Web Consortium">W3C</abbr></a>
+        </footer>
+    </body>
+</html>
